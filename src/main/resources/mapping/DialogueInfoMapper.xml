@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yang.dao.DialogueInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.yang.entity.DialogueInfo" >
+    <id column="d_id" property="dId" jdbcType="BIGINT" />
+    <result column="d_content" property="dContent" jdbcType="VARCHAR" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="utime" property="utime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    d_id, d_content, ctime, utime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dialogue_info
+    where d_id = #{dId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dialogue_info
+    where d_id = #{dId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yang.entity.DialogueInfo" >
+    insert into dialogue_info (d_id, d_content, ctime, 
+      utime)
+    values (#{dId,jdbcType=BIGINT}, #{dContent,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}, 
+      #{utime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yang.entity.DialogueInfo" >
+    insert into dialogue_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dId != null" >
+        d_id,
+      </if>
+      <if test="dContent != null" >
+        d_content,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="utime != null" >
+        utime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dId != null" >
+        #{dId,jdbcType=BIGINT},
+      </if>
+      <if test="dContent != null" >
+        #{dContent,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utime != null" >
+        #{utime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yang.entity.DialogueInfo" >
+    update dialogue_info
+    <set >
+      <if test="dContent != null" >
+        d_content = #{dContent,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utime != null" >
+        utime = #{utime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where d_id = #{dId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yang.entity.DialogueInfo" >
+    update dialogue_info
+    set d_content = #{dContent,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      utime = #{utime,jdbcType=TIMESTAMP}
+    where d_id = #{dId,jdbcType=BIGINT}
+  </update>
+</mapper>
