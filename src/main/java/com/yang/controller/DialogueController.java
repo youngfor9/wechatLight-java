@@ -12,11 +12,17 @@ import java.util.List;
 @RestController
 @EnableAutoConfiguration
 @RequestMapping("/dialogue")
-public class dialogueController {
+public class DialogueController {
     @Resource
     private DialogueService dialogueService;
+
     @RequestMapping("/getDialogueInfos")
     public List<DialogueInfo> getDialogueInfos() {
     return this.dialogueService.getDialogueInfos();
+    }
+
+    @RequestMapping("/selectDialogueById")
+    public DialogueInfo selectDialogueById(Long did) {
+        return this.dialogueService.selectDialogueById(did);
     }
 }

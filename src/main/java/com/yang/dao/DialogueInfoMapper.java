@@ -14,4 +14,5 @@ public interface DialogueInfoMapper {
     int updateByPrimaryKeySelective(DialogueInfo record);
 
     int updateByPrimaryKey(DialogueInfo record);
+
 }
