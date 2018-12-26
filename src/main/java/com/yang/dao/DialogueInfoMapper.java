@@ -2,7 +2,7 @@ package com.yang.dao;
 
 import com.yang.entity.DialogueInfo;
 
-public interface DialogueInfoMapper {
+public interface DialogueInfoMapper  {
     int deleteByPrimaryKey(Long dId);
 
     int insert(DialogueInfo record);
