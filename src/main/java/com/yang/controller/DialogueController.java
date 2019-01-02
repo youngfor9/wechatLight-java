@@ -1,5 +1,6 @@
 package com.yang.controller;
 
+import com.google.gson.Gson;
 import com.yang.entity.DialogueInfo;
 import com.yang.service.DialogueService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -21,8 +22,10 @@ public class DialogueController {
     return this.dialogueService.getDialogueInfos();
     }
 
-    @RequestMapping("/selectDialogueById")
-    public DialogueInfo selectDialogueById(Long did) {
-        return this.dialogueService.selectDialogueById(did);
+    @RequestMapping(value = "/selectDialogueById",produces = "application/json;charset=utf-8")
+    public String selectDialogueById(Long did) {
+        DialogueInfo dialogueInfo = this.dialogueService.selectDialogueById(did);
+        String dialogueStr = new Gson().toJson(dialogueInfo);
+        return dialogueStr;
     }
 }

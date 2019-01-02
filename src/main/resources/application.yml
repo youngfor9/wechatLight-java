@@ -3,6 +3,11 @@ server:
   port: 8080
 #开发配置
 spring:
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
   datasource:
     name: dialogue
     type: com.alibaba.druid.pool.DruidDataSource
