@@ -15,7 +15,7 @@ spring:
     #监控配置拦截的filters
     filters: stat
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.98.216.184:3306/dialogue
+    url: jdbc:mysql://47.98.216.184:3306/dialogue?useUnicode=true&characterEncoding=utf-8
     username: root
     password: 285285
     # 使用druid数据源
