@@ -34,28 +34,34 @@ public class DialogueServiceImpl implements DialogueService {
         Object[] res = new Object[num];
         try {
             dialogueInfos = this.dialogueDao.selectRankInfos(num);
-            List<AnswerInfo> answerInfos = answerMapper.selectRankInfos(num*2);
+            List<AnswerInfo> answerInfos = answerMapper.selectRankInfos(num*3);
             Long[] ids = new Long[num];
             for (int i = 0; i < num; i++) {
                 DialogueInfo dialogueInfo = dialogueInfos.get(i);
                 ids[i] =dialogueInfo.getaId();
             }
             List<AnswerInfo> answers  = answerMapper.selectInfos(ids);
+            int aSize = answerInfos.size();
             Random random = new Random();
-            Map<String,Object> ansMap = new HashMap<String,Object>();
-            Set<AnswerInfo> ansSet = new HashSet<>();
             for (int i = 0; i < num; i++) {
+                Map<String,Object> ansMap = new HashMap<String,Object>();
+                Set<AnswerInfo> ansSet = new HashSet<>();
                 DialogueInfo dialogueInfo = dialogueInfos.get(i);
                 //set中装进3个选项
-                while (ansSet.size() > 2) {
-                    int randomNum = random.nextInt(num);
+                while (ansSet.size() < 3) {
+                    int randomNum = random.nextInt(aSize);
                     AnswerInfo answerInfo = answerInfos.get(randomNum);
                     Long aId = answerInfo.getId();
                     if (aId != dialogueInfo.getaId() && !ansSet.contains(answerInfo)) {
                         ansSet.add(answerInfo);
                     }
                 }
-                ansSet.add(answers.get(i));
+                for (int j = 0; j < answers.size(); j++) {
+                    if (answers.get(j).getId()==dialogueInfo.getaId()) {
+                        ansSet.add(answers.get(j));
+                        break;
+                    }
+                }
                 ansMap.put("ans",ansSet);
                 ansMap.put("info",dialogueInfo);
                 res[i] =ansMap;

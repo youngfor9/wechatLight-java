@@ -20,9 +20,12 @@
     FROM `dialogue_answer`WHERE id >= (SELECT CEIL(RAND() * (SELECT MAX(id) FROM `dialogue_answer`))) -#{num}+1
    ORDER BY id LIMIT #{num};
   </select>
-  <select id="selectInfos" resultMap="BaseResultMap" parameterType="java.util.List" >
+  <select id="selectInfos" resultMap="BaseResultMap" >
     SELECT
     <include refid="Base_Column_List" />
-    FROM `dialogue_answer`WHERE id in (#{ids});
+    FROM `dialogue_answer`WHERE id in
+    <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+      #{item}
+    </foreach>
   </select>
 </mapper>

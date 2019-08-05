@@ -17,7 +17,7 @@
     from dialogue_info
     where id = #{dId,jdbcType=BIGINT}
   </select>
-  <select id="selectRankInfos" resultMap="BaseResultMap" parameterType="java.sql.Array" >
+  <select id="selectRankInfos" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
    SELECT
     <include refid="Base_Column_List" />
     FROM `dialogue_info`WHERE id >= (SELECT CEIL(RAND() * (SELECT MAX(id) FROM `dialogue_info`))) -#{num}+1
