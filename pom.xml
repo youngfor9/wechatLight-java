@@ -103,31 +103,7 @@
                     <verbose>true</verbose>
                 </configuration>
             </plugin>
-            <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>1.5.1.RELEASE</version>
-            <configuration>
-                <layout>ZIP</layout>
-                <excludes>
-                    <exclude>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>logback-classic</artifactId>
-                    </exclude>
-                    <exclude>
-                        <groupId>com.google.guava</groupId>
-                        <artifactId>guava</artifactId>
-                    </exclude>
-                    <exclude>
-                        <groupId>com.alibaba</groupId>
-                        <artifactId>druid</artifactId>
-                        <version>1.1.0</version>
-                    </exclude>
-                </excludes>
-            </configuration>
-            </plugin>
         </plugins>
-
     </build>
 
 </project>

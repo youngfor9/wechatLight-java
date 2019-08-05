@@ -8,7 +8,7 @@ public interface DialogueService {
     /**
      * 获取全部的台词
      */
-    public List<DialogueInfo> getDialogueInfos();
+    public Object[] getDialogueInfos(Integer num);
     /**
      * 根据id获取台词
      */

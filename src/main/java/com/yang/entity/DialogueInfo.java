@@ -3,28 +3,22 @@ package com.yang.entity;
 import java.util.Date;
 
 public class DialogueInfo {
-    private Long dId;
+    private Long id;
+    private Long aId;
 
-    private String dContent;
+    private String content;
 
     private Date ctime;
 
     private Date utime;
 
-    public Long getdId() {
-        return dId;
+
+    public String getContent() {
+        return content;
     }
 
-    public void setdId(Long dId) {
-        this.dId = dId;
-    }
-
-    public String getdContent() {
-        return dContent;
-    }
-
-    public void setdContent(String dContent) {
-        this.dContent = dContent == null ? null : dContent.trim();
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Date getCtime() {
@@ -41,5 +35,21 @@ public class DialogueInfo {
 
     public void setUtime(Date utime) {
         this.utime = utime;
+    }
+
+    public Long getaId() {
+        return aId;
+    }
+
+    public void setaId(Long aId) {
+        this.aId = aId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

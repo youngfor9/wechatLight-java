@@ -2,6 +2,8 @@ package com.yang.dao;
 
 import com.yang.entity.DialogueInfo;
 
+import java.util.List;
+
 public interface DialogueInfoMapper  {
     int deleteByPrimaryKey(Long dId);
 
@@ -15,4 +17,5 @@ public interface DialogueInfoMapper  {
 
     int updateByPrimaryKey(DialogueInfo record);
 
+    List<DialogueInfo> selectRankInfos(Integer num);
 }
