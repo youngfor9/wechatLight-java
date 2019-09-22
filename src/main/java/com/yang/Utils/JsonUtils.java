@@ -7,4 +7,9 @@ public class JsonUtils {
         Gson gson = new Gson();
         return gson.toJson(args);
     }
+    public static Object toObject(String json,Class beanClass) {
+        Gson gson = new Gson();
+        Object res = gson.fromJson(json, beanClass);
+        return res;
+    }
 }
