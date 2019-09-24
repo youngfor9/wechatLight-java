@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService {
 
-    Object saveUser(String data);
+    Object saveUser(UserInfo data);
 
     UserInfo getUser(String nickName);
 }

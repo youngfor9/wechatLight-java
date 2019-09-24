@@ -10,19 +10,20 @@
     <result column="province" property="province" jdbcType="VARCHAR" />
     <result column="country" property="country" jdbcType="VARCHAR" />
     <result column="avatarUrl" property="avatarUrl" jdbcType="VARCHAR" />
-    <result column="cTime" property="cTime" jdbcType="TIMESTAMP" />
-    <result column="uTime" property="uTime" jdbcType="TIMESTAMP" />
+    <result column="ctime" property="cTime" jdbcType="TIMESTAMP" />
+    <result column="utime" property="uTime" jdbcType="TIMESTAMP" />
     <result column="score" property="score" jdbcType="BIGINT" />
     <result column="lastScore" property="lastScore" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, nickName, gender, language,city,province,country,avatarUrl,ctime,utime,score,lastScore
+    `user`.id, `user`.nickName, `user`.gender, `user`.language,`user`.city,`user`.province,`user`.country,`user`.avatarUrl,
+    `user`.cTime,`user`.utime,`user`.score,`user`.lastScore
 </sql>
-  <insert id="saveUserInfo" useGeneratedKeys="true" keyProperty="id" parameterType="com.yang.entity.UserInfo">
-    INSERT INTO
-    'nickName','gender','language','city','province','country','avatarUrl','ctime','utime','score','lastScore'
-    (nick)values (
-        #{nickName}, #{gender}, #{language}, #{city}, #{province}, #{country}, #{avatarUrl},#{ctime},#{utime},#{score},#{lastScore},
+  <insert id="insertUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.yang.entity.UserInfo">
+    INSERT INTO `user`(
+    `nickName`,`gender`,`language`,`city`,`province`,`country`,`avatarUrl`,`ctime`,`utime`,`score`,`lastScore`
+    )values (
+        #{nickName}, #{gender}, #{language}, #{city}, #{province}, #{country}, #{avatarUrl},#{cTime},#{uTime},#{score},#{lastScore}
     )
   </insert>
   <select id="getUser" parameterType="java.lang.String" resultMap="BaseResultMap" >
@@ -32,10 +33,10 @@
   </select>
   <!--update -->
   <update id="updateUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.yang.entity.UserInfo" >
-    update 'user'
-    set 'score' = #{score,jdbcType=BIGINT},
-      'utime' = #{uTime,jdbcType=TIMESTAMP},
-      'lastScore' = #{lastScore,jdbcType=BIGINT},
+    update `user`
+    set `score` = #{score,jdbcType=BIGINT},
+      `utime` = #{uTime,jdbcType=TIMESTAMP},
+      `lastScore` = #{lastScore,jdbcType=BIGINT},
     where nickName = #{nickName,jdbcType=VARCHAR}
   </update>
 </mapper>

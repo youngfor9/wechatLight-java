@@ -18,14 +18,17 @@ public class UserServiceImpl implements UserService {
 
     //保存user对象
     @Override
-    public Object saveUser(String data) {
-        UserInfo userInfo = (UserInfo) JsonUtils.toObject(data, UserInfo.class);
+    public Object saveUser(UserInfo userInfo) {
+       // UserInfo userInfo = (UserInfo) JsonUtils.toObject(data, UserInfo.class);
         UserInfo user = getUser(userInfo.getNickName());
-        Long id =null;
+        Long id ;
         if (user == null) {
+            userInfo.setuTime(new Date());
+            userInfo.setcTime(new Date());
              id = userMapper.insertUser(userInfo);
         }else{
-             id = userMapper.updateUser(userInfo);
+            userInfo.setuTime(new Date());
+            id = userMapper.updateUser(userInfo);
         }
         Map<String,Object> res = new HashMap<>();
         if(id!=null){
@@ -39,5 +42,4 @@ public class UserServiceImpl implements UserService {
     public UserInfo getUser(String  nickName) {
         return userMapper.getUser(nickName);
     }
-
 }

@@ -1,0 +1,78 @@
+Index: src/main/resources/mapping/DialogueInfoMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/mapping/DialogueInfoMapper.xml	(revision d31642f16db04fb895a425ae49e4af607e5dc140)
++++ src/main/resources/mapping/DialogueInfoMapper.xml	(date 1569307662266)
+@@ -9,12 +9,12 @@
+     <result column="a_id" property="aId" jdbcType="BIGINT" />
+   </resultMap>
+   <sql id="Base_Column_List" >
+-    id, content, ctime, utime,a_id
++    t1.id, t1.content, t1.ctime, t1.utime,t1.a_id
+   </sql>
+   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+     select 
+     <include refid="Base_Column_List" />
+-    from dialogue_info
++    from `dialogue_info`
+     where id = #{dId,jdbcType=BIGINT}
+   </select>
+   <select id="selectRankInfos" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+@@ -24,17 +24,17 @@
+     ORDER BY t1.id ASC LIMIT #{num};
+   </select>
+   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+-    delete from dialogue_info
++    delete from `dialogue_info`
+     where id = #{dId,jdbcType=BIGINT}
+   </delete>
+   <insert id="insert" parameterType="com.yang.entity.DialogueInfo" >
+-    insert into dialogue_info (id, content, ctime, 
++    insert into `dialogue_info` (id, content, ctime,
+       utime)
+     values (#{dId,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}, 
+       #{utime,jdbcType=TIMESTAMP})
+   </insert>
+   <insert id="insertSelective" parameterType="com.yang.entity.DialogueInfo" >
+-    insert into dialogue_info
++    insert into `dialogue_info`
+     <trim prefix="(" suffix=")" suffixOverrides="," >
+       <if test="dId != null" >
+         id,
+@@ -65,7 +65,7 @@
+     </trim>
+   </insert>
+   <update id="updateByPrimaryKeySelective" parameterType="com.yang.entity.DialogueInfo" >
+-    update dialogue_info
++    update `dialogue_info`
+     <set >
+       <if test="content != null" >
+         content = #{content,jdbcType=VARCHAR},
+@@ -80,7 +80,7 @@
+     where id = #{dId,jdbcType=BIGINT}
+   </update>
+   <update id="updateByPrimaryKey" parameterType="com.yang.entity.DialogueInfo" >
+-    update dialogue_info
++    update `dialogue_info`
+     set content = #{content,jdbcType=VARCHAR},
+       ctime = #{ctime,jdbcType=TIMESTAMP},
+       utime = #{utime,jdbcType=TIMESTAMP}
+Index: src/main/resources/mapping/UserMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/mapping/UserMapper.xml	(revision d31642f16db04fb895a425ae49e4af607e5dc140)
++++ src/main/resources/mapping/UserMapper.xml	(date 1569307188994)
+@@ -16,7 +16,8 @@
+     <result column="lastScore" property="lastScore" jdbcType="BIGINT" />
+   </resultMap>
+   <sql id="Base_Column_List" >
+-    id, nickName, gender, language,city,province,country,avatarUrl,ctime,utime,score,lastScore
++    `user`.id, `user`.nickName, `user`.gender, `user`.language,`user`.city,`user`.province,`user`.country,`user`.avatarUrl,
++    `user`.ctime,`user`.utime,`user`.score,`user`.lastScore
+ </sql>
+   <insert id="saveUserInfo" useGeneratedKeys="true" keyProperty="id" parameterType="com.yang.entity.UserInfo">
+     INSERT INTO

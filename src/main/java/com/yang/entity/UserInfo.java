@@ -1,8 +1,8 @@
 package com.yang.entity;
 
+import java.io.Serializable;
 import java.util.Date;
-
-public class UserInfo {
+public class UserInfo  {
     private Long id;
     private String nickName;
     //1：男，2：女
