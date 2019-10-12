@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             userInfo.setuTime(new Date());
             userInfo.setcTime(new Date());
+            userInfo.setScore(user.getScore()+userInfo.getLastScore());
              id = userMapper.insertUser(userInfo);
         }else{
             userInfo.setuTime(new Date());
