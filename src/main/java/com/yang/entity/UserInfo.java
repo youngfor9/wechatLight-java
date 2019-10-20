@@ -1,5 +1,8 @@
 package com.yang.entity;
 
+import org.springframework.data.annotation.Transient;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 public class UserInfo  {
@@ -18,14 +21,26 @@ public class UserInfo  {
     //头像
     private String avatarUrl;
     //创建时间
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date cTime;
     //更新时间
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date uTime;
     //总分
     private Long score;
     //上次得分
     private Long lastScore;
+    //当前排名
+    @Transient
+    private String rank;
 
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
 
     public Long getId() {
         return id;

@@ -10,4 +10,6 @@ public interface UserService {
     Object saveUser(UserInfo data);
 
     UserInfo getUser(String nickName);
+
+    List<UserInfo> getUsers(Integer num);
 }

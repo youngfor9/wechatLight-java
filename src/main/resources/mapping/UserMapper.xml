@@ -36,7 +36,12 @@
     update `user`
     set `score` = #{score,jdbcType=BIGINT},
       `utime` = #{uTime,jdbcType=TIMESTAMP},
-      `lastScore` = #{lastScore,jdbcType=BIGINT},
-    where nickName = #{nickName,jdbcType=VARCHAR}
+      `lastScore` = #{lastScore,jdbcType=BIGINT}
+    where `nickName` = #{nickName,jdbcType=VARCHAR}
   </update>
+  <select id="getUsers" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM `user`  ORDER BY score DESC LIMIT #{score,jdbcType=INTEGER};
+  </select>
 </mapper>

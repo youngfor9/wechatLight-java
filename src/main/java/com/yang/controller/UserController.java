@@ -25,4 +25,9 @@ public class UserController {
     public String getUser(String nickName) {
         return JsonUtils.toJsonString(this.userService.getUser(nickName));
     }
+
+    @RequestMapping("/getUsers")
+    public String getUser(Integer num) {
+        return JsonUtils.toJsonString(this.userService.getUsers(num));
+    }
 }
