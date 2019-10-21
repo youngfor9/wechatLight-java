@@ -48,6 +48,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserInfo getUser(String nickName) {
         UserInfo user = userMapper.getUser(nickName);
+        if(null ==user) return null;
         Long score = user.getScore();
         List<String> sameUsers = new ArrayList<String>();
         //只计算20以内
@@ -72,10 +73,12 @@ public class UserServiceImpl implements UserService {
             Arrays.sort(strs, model);
             String target = user.getNickName();
             String temp = strs[0];
+            int len = strs.length;
             int i = 1;
-            while (!target.equals(temp)) {
+            while (!target.equals(temp)&&i < len) {
                 rank++;
                 temp = strs[i];
+                i++;
             }
         }
         user.setRank(rank+"");
