@@ -30,9 +30,12 @@ public class UserServiceImpl implements UserService {
             id = userMapper.insertUser(userInfo);
         } else {
             user.setuTime(new Date());
+            if(null == user.getScore()){
+                user.setScore(0l);
+            }
             if (userInfo.getLastScore() != null) {
                 user.setLastScore(userInfo.getScore());
-                user.setScore(user.getScore() + userInfo.getLastScore());
+                user.setScore(user.getScore() + userInfo.getScore());
             }
             id = userMapper.updateUser(user);
         }
@@ -48,8 +51,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserInfo getUser(String nickName) {
         UserInfo user = userMapper.getUser(nickName);
-        if(null ==user) return null;
+        if(null == user) return null;
         Long score = user.getScore();
+        if(null == score){
+            user.setRank("0");
+            user.setScore(0l);
+            return user;
+        }
         List<String> sameUsers = new ArrayList<String>();
         //只计算20以内
         List<UserInfo> users = getUsers(20);
@@ -57,7 +65,8 @@ public class UserServiceImpl implements UserService {
         //20名开外不进行排序
         for (int i = 0; i < users.size(); i++) {
             Long perScore = users.get(i).getScore();
-            if (perScore == score) {
+            if(null == perScore) continue;
+            if (  perScore == score) {
                 sameUsers.add(users.get(i).getNickName());
             }
             if (perScore <= score && rank==-1 ) {
